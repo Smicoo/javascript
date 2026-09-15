@@ -3,7 +3,7 @@ let szamok = [36, -2, 112, 101, 22];
 //1.) Adjunk hozzá 10 új, véletlen számokat a tömbhöz, [-100, +100]
 
 for (let i = 0; i < 10; i++) {
-    let szam = Math.floor(Math.random() * 201) - 100;
+    let szam = Math.floor(Math.random() * 200 -100)
     szamok.push(szam);
 }
 
@@ -20,10 +20,9 @@ console.log(vanSzaznalNagyobb)
 
 //4.) Határozzuk meg az új tömb legnagyobb értékű elemét
 
-pozitivParosSzamok.sort((a,b) => a-b).reverse()
+pozitivParosSzamok.sort((a,b) => a-b).reverse() //inkabb ez (Math.max(...ujSzamok)) mint a rendezes
 console.log(pozitivParosSzamok[0])
 
 //5.) Rendezzük az új tömböt csökkenő sorrendbe
-pozitivParosSzamok.sort((a,b) => a-b).reverse()
-
+pozitivParosSzamok.sort((a,b) => b-a)
 console.log(pozitivParosSzamok)
