@@ -48,3 +48,15 @@ console.log(s)
 
 s = s.substring(0, 6) + "X" + s.substring(7)
 console.log(s)
+
+//Helykitöltés
+
+let ora = 9
+let perc = 5
+
+console.log((ora + "").padStart(2, "0") + ":" + (perc + "").padStart(2, "0")) //ez maris string lesz //padStart ele fuz a padEnd moge //Ez ilyen oraperces cucli
+
+//Vágás
+let adatok = "Sipi Rupi_Bábolna_tanuló_narancssárga"
+let adatokStringTomb = adatok.split("_")
+console.log(adatokStringTomb)
