@@ -49,16 +49,15 @@ class Alkalmazott extends Szemely{
 }
 
 class Kisfonok extends Alkalmazott{
-    #beosztottakSzama = undefined
+    #beosztottakSzama = 0
 
     constructor(nev, foglalkozas, szuletesiEv, fizetes){
         super(nev, foglalkozas, szuletesiEv, fizetes)
+        this.#beosztottakSzama = Math.floor(Math.random() * 21)
     }
 
     get beosztottakSzama(){return this.#beosztottakSzama}
-    set beosztottakSzama(szam){
-        szam = Math.random() * 10
-    }
+
     
 }
 
@@ -71,4 +70,6 @@ irenke.azonosito = "asd sad "
 console.log(irenke) //nem engedi megvaltoztatni mivel betut akartunk megadni
 console.log(`${irenke.nev} fizetése: ${irenke.fizetesEbbenAHonapban()} forint`)
 
-let boss = new Kisfonok("Boss", "Kisfonok", "1942")
+let boss = new Kisfonok("Boss", "Kisfonok", 1942, 6767676767)
+
+console.log(`${boss.nev} fizetése: ${boss.fizetesEbbenAHonapban()} forint, beosztottjai száma: ${boss.beosztottakSzama}`)
