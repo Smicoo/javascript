@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feladat</title>
+</head>
+<body>
+    
+    <script>
+        //Készítsen függvényt, amely elszámol 0-tól 20 ig egyesével de nem szabad ciklust hasznalni es egy masodpercenkent ir ki egy szamot a konzolra
+
+        let i = 0
+        
+        function szamol(){
+            console.log(i)
+            i++
+            if(i > 20){
+                return 
+            }
+            setTimeout(szamol, 1000)
+        }
+        szamol()
+        
+    </script>
+    
+</body>
+</html>

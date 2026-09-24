@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback</title>
+</head>
+<body>
+    <script>
+        //Callback hell ez nagyon gatya vege EZT NE :(
+        function getReceptek(){
+            setTimeout(() => {
+                const receptek = [82, 329, 854, 12, 78, 124]
+                console.log(receptek)
+
+                setTimeout((id) => {
+                    const recept = {
+                        id: 12,
+                        cim: "Almás pite",
+                        kategoria: "sütemény",
+                        ido: "120 perc",
+                        nehezseg: 2,
+                        hozzavalo: ["alma","tojas", "liszt", "tej", "cukor", "fahéj"]
+                    }
+                    console.log(recept)
+
+                    setTimeout((kategoria) => {
+                        const sutemenyek = [
+                            {id: 12, cim: "Almás pite"},
+                            {id: 49, cim: "Aranygaluska"},
+                            {id: 145, cim: "Kakaós csiga"}
+                        ]
+                        console.log(sutemenyek)
+
+                    }, 1500,);
+                }, 2000);
+            }, 1500);
+        }
+
+        getReceptek()
+
+        //Promiseok kovetkeznek ennek a csomornek az elkerulesere, specialis class (uj tipusnak is tekintheto), igeret arra vonatkozoan hogy mi ezt vegrehajtjuk kapunk ra valaszt, amikor utjara inditjuk bekerul 1 pending allapotba es ez 2 dologgal vegzodhet: vagy fullfilled (sikeres) utana .then() vagy rejected (visszautasitas) .catch() el elkapjuk a hibat (error handling)
+
+    </script>
+</body>
+</html>

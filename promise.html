@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <script>
+        const getReceptek = new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                resolve([82, 329, 854, 12, 78, 124])
+                reject("Nem sikerult a receptek lekerdezese") //Nyilvan a resolveot ki kell kommentelni mert a resolve ra megy
+            }, 1500);
+        })
+
+        
+        const recept = id => new Promise((resolve, reject) =>{
+            setTimeout((id) => {
+                const recept = {
+                        id: 12,
+                        cim: "Almás pite",
+                        kategoria: "sütemény",
+                        ido: "120 perc",
+                        nehezseg: 2,
+                        hozzavalo: ["alma","tojas", "liszt", "tej", "cukor", "fahéj"]
+                    }
+                resolve(recept)
+                
+            }, 2000);
+        })
+
+        const receptKategoriaSzerint = (kategoria) => new Promise((resolve, reject) =>{
+            setTimeout((kategoria) => {
+                const sutemenyek = [
+                        {id: 12, cim: "Almás pite"},
+                        {id: 49, cim: "Aranygaluska"},
+                        {id: 145, cim: "Kakaós csiga"}
+                    ]
+                    resolve(sutemenyek)
+            }, 1500);
+        }) 
+
+
+        //Ennel van jobb modszer is ez ugye a frontendes resz async fileba
+        getReceptek
+        .then(receptekId =>{
+            console.log(receptekId)
+            return recept(receptekId[3]) //Itt azert return mert atdobom a kovetkezo return agra
+        })
+        .then(recept =>{
+            console.log(recept)
+            return receptKategoriaSzerint(recept.kategoria)
+        })
+        .then(receptek =>{
+            console.log(receptek)
+        })
+        .catch(error =>{
+            console.log("Hiba: " + error) //Itt mar kezelt a hiba
+        }) //Elkapjuk a hibat ha van error
+
+    </script>
+</body>
+</html>
