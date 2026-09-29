@@ -3,11 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web API alapok</title>
+    <title>Web API alapok / Pokemon Card Generator</title>
+    <link rel="stylesheet" href="api.css">
 </head>
 <body>
+    <div class="container">
+        <div id="card">
+            <p id="hp"></p>
+            <img id="img" src="" alt="">
+            <h2 id="pokename"></h2>
+            <div id="type"></div>
+            <div id="stats">
+                <div>
+                    <h3 id="attack"></h3>
+                    <p>Attack</p>
+                </div>
+                <div>
+                    <h3 id="defense"></h3>
+                    <p>Defense</p>
+                </div>
+                <div>
+                    <h3 id="speed"></h3>
+                    <p>Speed</p>
+                </div>
+            </div>
+        </div>
+        <button id="btn">Generate</button>
+    </div>
 
-    <img id="pic" src="" alt="">
+    <script src="api.js"></script>
+    <!-- <img id="pic" src="" alt="">
     <script>
         async function getPokemon(url) {
             const response = await fetch(url)
@@ -19,6 +44,6 @@
         }
 
         getPokemon("https://pokeapi.co/api/v2/pokemon/pikachu")
-    </script>
+    </script> -->
 </body>
 </html>
