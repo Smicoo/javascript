@@ -1,3 +1,25 @@
+//Dictionary (szotart kell kesziteni hogy tarolni tudjuk hogy milyen typehoz milyen szin tartozik) Map, a sima tömb ugy mukodik hogy indexet rendel hozza, a szotar (asszociativ tomb) pedig 1 kulcshoz rendeli hozza
+const typeColors = new Map([
+    ["normal", "#a8a878"],
+    ["fire", "#f08030"],
+    ["water", "#6890f0"],
+    ["grass", "#78c850"],
+    ["electric", "#f8d030"],
+    ["ice", "#98d8d8"],
+    ["fighting", "#c03028"],
+    ["poison", "#a040a0"],
+    ["ground", "#e0c068"],
+    ["flying", "#a890f0"],
+    ["psychic", "#f85888"],
+    ["bug", "#a8b820"],
+    ["rock", "#b8a038"],
+    ["ghost", "#705898"],
+    ["dragon", "#7038f8"],
+    ["dark", "#705848"],
+    ["steel", "#b8b8d0"],
+    ["fairy", "#ee99ac"]
+])
+
 const $ = (id) => document.getElementById(id)
 
 // function $(id){
@@ -29,7 +51,7 @@ let updateCard = (data) =>{
     const defense = data.stats[2].base_stat
     const speed = data.stats[5].base_stat
 
-    $("hp").innerText = hp
+    $("hp").innerText = "Hp: " + hp
     $("img").src = imgSrc
     $("pokename").innerText = pokeName
     $("attack").innerHTML = attack
@@ -37,6 +59,7 @@ let updateCard = (data) =>{
     $("speed").innerHTML = speed
 
     appendTypes(types)
+    styleCard(types[0].type.name)
 }
 
 let appendTypes = (types) => {
@@ -47,5 +70,16 @@ let appendTypes = (types) => {
         $("type").appendChild(span)
     }
 }
+
+let styleCard = (type) =>{
+    const color = typeColors.get(type) //Ez a mapnek 1 fuggvenye
+    $("card").style.background = `radial-gradient(circle at 50% 0%, ${color} 35%, #fff 50%)`
+
+
+    $("type").querySelectorAll("span").forEach(span =>{
+        span.style.backgroundColor = color
+    })
+}
+
 
 $("btn").addEventListener("click", getPokeData)
