@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iTunes zenelejatszo</title>
+    <title>iTunes Zenelejátszó</title>
     <link rel="stylesheet" href="iTunesApi.css">
 </head>
 <body>
-    <h1>iTunes zene kereso es lejátszó</h1>
+    <h1>iTunes zene kereső és lejátszó</h1>
     <h2>Mit keressek meg:</h2>
-    <input type="text" id="keresett">
+    <input type="text" id="keresett" />
     <button id="kereses">Keresés</button>
-
+    <br><br>
+    <audio controls autoplay id="zene"></audio>
+    <img id="boritokep">
+    <br>
     <table>
         <thead>
             <tr>
                 <th>Sorszám</th>
                 <th>Előadó</th>
+                <th>Borítókép</th>
                 <th>Zene címe</th>
                 <th>Zene hossza</th>
                 <th>Kiadás éve</th>
+                <th></th>
             </tr>
         </thead>
         <tbody id="zenek"></tbody>
     </table>
-
-
-
-
-
 
     <script src="iTunesApi.js"></script>
 </body>

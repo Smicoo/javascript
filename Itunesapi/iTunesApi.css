@@ -1,0 +1,35 @@
+table tr:nth-child(2n){
+    background-color: pink;
+}
+
+table .zene-td{
+    cursor: pointer;
+}
+
+table .zene-td:hover{
+    text-decoration: underline;
+    color: blueviolet;
+}
+
+table img{
+    width: 100%;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+@keyframes spin{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+#boritokep{
+    border-radius: 50px;
+    transform-origin: center;
+    animation: spin 15s linear infinite;
+}
