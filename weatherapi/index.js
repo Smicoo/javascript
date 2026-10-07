@@ -1,6 +1,8 @@
 const $ = id => document.getElementById(id);
 
 async function Kereses(){
+
+    //Ez a mostani idojaras
     let keresett = $('keresett').value.trim();
 
     const apiKey = 'a8010f849066d5470a5f1734bced3064'
@@ -31,35 +33,41 @@ async function Kereses(){
     // console.log('Páratartalom:', weatherData.main.humidity);
     // console.log('Légnyomás:', weatherData.main.pressure);
 
+
+    //Most jon az 5 napos elorejelzes
+
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=hu`;
+    const forecastResponse = await fetch(forecastUrl)
+    const forecastData = await forecastResponse.json()
+
+    //
     fillTable(weatherData)
 }
 
 let fillTable = (data) =>{
 
-    $("idojaras").innerHTML = ""
-    
-    const adatok = data.list
-    for(let adat of adatok){
-        let tr = document.createElement('tr');
+    $("jelen_idojaras").innerHTML = ""
 
-        let homerseklet = document.createElement('td');
-        homerseklet.innerText = adat.main.temp;
+    let tr = document.createElement('tr');
 
-        let hoerzet = document.createElement("td")
-        hoerzet.innerText = adat.main.feels_like
+    let homerseklet = document.createElement('td');
+    homerseklet.innerText = data.main.temp + `°C`;
 
-        let paratartalom = document.createElement("td")
-        paratartalom.innerText = adat.main.humidity
+    let hoerzet = document.createElement("td");
+    hoerzet.innerText = data.main.feels_like + `°C`;
 
-        let legnyomas = document.createElement("td")
-        legnyomas.innerText = adat.main.pressure
+    let paratartalom = document.createElement("td");
+    paratartalom.innerText = data.main.humidity + `%`;
 
-        tr.appendChild(homerseklet)
-        tr.appendChild(hoerzet)
-        tr.appendChild(paratartalom)
-        tr.appendChild(legnyomas)
-        $("idojaras").appendChild(tr)
-    }
+    let legnyomas = document.createElement("td");
+    legnyomas.innerText = data.main.pressure + `hPa`;
+
+    tr.appendChild(homerseklet);
+    tr.appendChild(hoerzet);
+    tr.appendChild(paratartalom);
+    tr.appendChild(legnyomas);
+
+    $("jelen_idojaras").appendChild(tr);
 }
 
 
