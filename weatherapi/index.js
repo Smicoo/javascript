@@ -39,9 +39,11 @@ async function Kereses(){
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=hu`;
     const forecastResponse = await fetch(forecastUrl)
     const forecastData = await forecastResponse.json()
+    console.log(forecastData)
 
-    //
+
     fillTable(weatherData)
+    fillForecastTable(forecastData)
 }
 
 let fillTable = (data) =>{
@@ -69,6 +71,41 @@ let fillTable = (data) =>{
 
     $("jelen_idojaras").appendChild(tr);
 }
+
+let fillForecastTable = (forecastData) => {
+
+    const forecastDataObjArray = forecastData.list;
+
+    $("elorejelzesTemps").innerHTML = "";
+
+    let maiDatum = new Date();
+
+    for (let i = 1; i <= 5; i++) {
+
+        let datum = new Date(maiDatum);
+        datum.setDate(maiDatum.getDate() + i);
+
+        let ev = datum.getFullYear();
+        let honap = String(datum.getMonth() + 1).padStart(2, '0');
+        let nap = String(datum.getDate()).padStart(2, '0');
+
+        let keresettDatum = `${ev}-${honap}-${nap}`;
+
+        for (const x of forecastDataObjArray) {
+
+            if (x.dt_txt.startsWith(keresettDatum) &&
+                x.dt_txt.includes("12:00:00")) {
+
+                const td = document.createElement("td");
+                td.innerText = x.main.temp + " °C";
+
+                $("elorejelzesTemps").appendChild(td);
+            }
+        }
+    }
+}
+
+
 
 
 
